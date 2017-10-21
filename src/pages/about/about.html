@@ -1,11 +1,25 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      Quote
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding >
+	<ion-searchbar (ionInput)="searchQuote($event)"> 
+	</ion-searchbar>
+	<ion-list *ngIf="!isFiltered">
+		<ion-item *ngFor="let quote of quotesList" (click)="itemTapped(quote)" >
+			{{quote.author}}
+			<p>{{quote.quote}}</p>
+		</ion-item>
+	</ion-list>
 
+	<ion-list *ngIf="isFiltered">
+		<ion-item *ngFor="let quote of filterQuotes" (click)="itemTapped(quote)">
+			{{quote.author}}
+			<p>{{quote.quote}}</p>
+		</ion-item>
+	</ion-list>
 </ion-content>
